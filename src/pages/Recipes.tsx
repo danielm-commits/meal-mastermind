@@ -57,7 +57,7 @@ const RecipeDetail = ({ recipe, onBack, isFav, onToggleFav }: { recipe: Recipe; 
       <div className="mb-6 animate-fade-in">
         <div className="flex items-center gap-3 mb-2">
           <span className="text-4xl">{recipe.image}</span>
-          <h1 className="text-[28px] font-bold tracking-tight">{recipe.name}</h1>
+          <h1 className="font-serif text-[32px] font-semibold tracking-tight leading-tight">{recipe.name}</h1>
         </div>
         <div className="flex gap-2 mt-3 flex-wrap">
           {recipe.tags.map(tag => (
@@ -129,7 +129,7 @@ const CreateRecipe = ({ onSave, onCancel }: { onSave: (r: Recipe) => void; onCan
       {/* Header */}
       <div className="px-5 pt-8 pb-2 flex items-center gap-3">
         <BackButton onClick={onCancel} />
-        <h1 className="text-[28px] font-bold tracking-tight">New Recipe</h1>
+        <h1 className="font-serif text-[32px] font-semibold tracking-tight leading-tight">New Recipe</h1>
       </div>
 
       {/* Name */}
@@ -319,11 +319,11 @@ const Recipes = () => {
       {/* FAB */}
       <button
         onClick={() => setCreating(true)}
-        className="fixed right-5 w-14 h-14 rounded-full flex items-center justify-center shadow-lg z-40 transition-transform active:scale-95"
-        style={{ bottom: 'calc(4rem + env(safe-area-inset-bottom, 0px) + 1.5rem)', backgroundColor: '#2B4C7E' }}
+        className="fixed right-5 w-14 h-14 rounded-full flex items-center justify-center shadow-lg z-40 transition-transform active:scale-95 bg-primary"
+        style={{ bottom: 'calc(4rem + env(safe-area-inset-bottom, 0px) + 1.5rem)' }}
         aria-label="Create recipe"
       >
-        <Plus className="w-6 h-6 text-white" strokeWidth={2} />
+        <Plus className="w-6 h-6 text-primary-foreground" strokeWidth={2} />
       </button>
     </div>
   );

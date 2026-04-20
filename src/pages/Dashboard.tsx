@@ -53,29 +53,26 @@ const Dashboard = () => {
     <div className="pb-24 max-w-lg mx-auto">
 
       {/* Header with avatar */}
-      <div className="flex items-center justify-between px-5 pt-8 pb-4">
-        <div>
-          <h1 className="text-[28px] font-bold tracking-tight text-foreground">Home</h1>
+      <div className="flex items-start justify-between px-5 pt-10 pb-2">
+        <div className="animate-fade-in">
+          <p className="text-xs font-medium tracking-[0.18em] uppercase text-muted-foreground">{todayDate}</p>
+          <h1 className="font-serif text-[34px] font-semibold tracking-tight text-foreground leading-tight mt-2">
+            Hey, {profile.name.split(' ')[0]}
+          </h1>
         </div>
         <button
           onClick={() => navigate("/profile")}
-          className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-card shrink-0"
+          className="w-11 h-11 rounded-full bg-primary flex items-center justify-center shadow-card shrink-0 mt-1"
         >
-          <span className="text-sm font-bold text-primary-foreground">{initials}</span>
+          <span className="text-sm font-semibold text-primary-foreground">{initials}</span>
         </button>
       </div>
 
-      {/* 1 — Greeting (plain header, no card background) */}
-      <div className="px-5 mb-5 animate-fade-in">
-        <p className="text-base font-semibold text-foreground">Hey, {profile.name}</p>
-        <p className="text-sm text-muted-foreground mt-0.5">{todayDate}</p>
-      </div>
-
       {/* 2 — Today's meals */}
-      <div className="mx-5 mb-5 animate-fade-in" style={{ animationDelay: '0.05s' }}>
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-base font-semibold">Today's meals</h2>
-          <button onClick={() => navigate('/planner')} className="text-sm font-medium text-primary">Full week</button>
+      <div className="mx-5 mb-6 mt-6 animate-fade-in" style={{ animationDelay: '0.05s' }}>
+        <div className="flex items-baseline justify-between mb-3">
+          <h2 className="font-serif text-xl font-semibold tracking-tight">Today's meals</h2>
+          <button onClick={() => navigate('/planner')} className="text-sm font-medium text-primary">Full week →</button>
         </div>
         {todayMeals.every(({ recipe }) => !recipe) ? (
           <div className="bg-card rounded-2xl shadow-card px-5 py-6 flex flex-col items-center text-center">
@@ -106,8 +103,8 @@ const Dashboard = () => {
 
       {/* 3 — Stock alerts (max 3) */}
       {visibleAlerts.length > 0 && (
-        <div className="mx-5 mb-5 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-          <h2 className="text-base font-semibold mb-3">Stock alerts</h2>
+        <div className="mx-5 mb-6 animate-fade-in" style={{ animationDelay: '0.1s' }}>
+          <h2 className="font-serif text-xl font-semibold tracking-tight mb-3">Running low</h2>
           {visibleAlerts.map(item => {
             const isCritical = item.status === 'critical';
             return (
@@ -143,14 +140,14 @@ const Dashboard = () => {
         </div>
       )}
 
-      {/* 4 — Shopping list CTA: full-width sage green pill */}
+      {/* 4 — Shopping list CTA */}
       <div className="mx-5 mb-5 animate-fade-in" style={{ animationDelay: '0.15s' }}>
         <button
           onClick={() => navigate('/pantry')}
-          className="w-full flex items-center justify-center gap-2 h-14 bg-primary rounded-full shadow-card"
+          className="w-full flex items-center justify-center gap-2 h-14 bg-primary rounded-2xl shadow-card transition-transform active:scale-[0.98]"
         >
           <ShoppingCart className="w-5 h-5 text-primary-foreground" strokeWidth={1.5} />
-          <span className="text-sm font-semibold text-primary-foreground">View shopping list</span>
+          <span className="text-sm font-semibold text-primary-foreground tracking-wide">View shopping list</span>
         </button>
       </div>
 

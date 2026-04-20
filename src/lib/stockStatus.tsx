@@ -8,7 +8,7 @@ export const stockStatusConfig: Record<StockStatus, {
 }> = {
   ok: {
     label: 'In stock',
-    borderColor: 'border-l-[#2B4C7E]',
+    borderColor: 'border-l-primary',
     neededClass: 'text-muted-foreground',
     neededBg: 'bg-secondary',
   },

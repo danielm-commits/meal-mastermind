@@ -295,11 +295,11 @@ const Pantry = () => {
       {/* FAB */}
       <button
         onClick={() => tab === 'stock' ? setPantryAddOpen(true) : setShoppingAddOpen(true)}
-        className="fixed right-5 w-14 h-14 rounded-full flex items-center justify-center shadow-lg z-40 transition-transform active:scale-95"
-        style={{ bottom: 'calc(4rem + env(safe-area-inset-bottom, 0px) + 1.5rem)', backgroundColor: '#2B4C7E' }}
+        className="fixed right-5 w-14 h-14 rounded-full flex items-center justify-center shadow-lg z-40 transition-transform active:scale-95 bg-primary"
+        style={{ bottom: 'calc(4rem + env(safe-area-inset-bottom, 0px) + 1.5rem)' }}
         aria-label={tab === 'stock' ? 'Add pantry item' : 'Add to shopping list'}
       >
-        <Plus className="w-6 h-6 text-white" strokeWidth={2} />
+        <Plus className="w-6 h-6 text-primary-foreground" strokeWidth={2} />
       </button>
 
       {/* Pantry add sheet */}
