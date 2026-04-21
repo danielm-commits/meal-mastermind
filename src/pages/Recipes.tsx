@@ -221,9 +221,20 @@ const Recipes = () => {
   const [search, setSearch] = useState('');
   const [selected, setSelected] = useState<Recipe | null>(null);
   const [creating, setCreating] = useState(false);
-  const [favorites, setFavorites] = useState<Set<string>>(new Set());
-  const [removedIds, setRemovedIds] = useState<Set<string>>(new Set());
-  const [customRecipes, setCustomRecipes] = useState<Recipe[]>([]);
+
+  const [customRecipes, setCustomRecipes] = useState<Recipe[]>(() => {
+    try { return JSON.parse(localStorage.getItem('mm_custom_recipes') ?? '[]'); }
+    catch { return []; }
+  });
+  const [favorites, setFavorites] = useState<Set<string>>(() => {
+    try { return new Set(JSON.parse(localStorage.getItem('mm_recipe_favorites') ?? '[]')); }
+    catch { return new Set(); }
+  });
+  const [removedIds, setRemovedIds] = useState<Set<string>>(() => {
+    try { return new Set(JSON.parse(localStorage.getItem('mm_removed_recipes') ?? '[]')); }
+    catch { return new Set(); }
+  });
+
   const allRecipes = [...customRecipes, ...defaultRecipes].filter(r => !removedIds.has(r.id));
   const filtered = allRecipes.filter(r => r.name.toLowerCase().includes(search.toLowerCase()));
 
@@ -231,18 +242,27 @@ const Recipes = () => {
     setFavorites(prev => {
       const next = new Set(prev);
       next.has(id) ? next.delete(id) : next.add(id);
+      try { localStorage.setItem('mm_recipe_favorites', JSON.stringify([...next])); } catch {}
       return next;
     });
   };
 
   const removeRecipe = (id: string) => {
-    setRemovedIds(prev => new Set(prev).add(id));
+    setRemovedIds(prev => {
+      const next = new Set(prev).add(id);
+      try { localStorage.setItem('mm_removed_recipes', JSON.stringify([...next])); } catch {}
+      return next;
+    });
     if (selected?.id === id) setSelected(null);
     toast.success('Recipe removed');
   };
 
   const handleSave = (recipe: Recipe) => {
-    setCustomRecipes(prev => [recipe, ...prev]);
+    setCustomRecipes(prev => {
+      const next = [recipe, ...prev];
+      try { localStorage.setItem('mm_custom_recipes', JSON.stringify(next)); } catch {}
+      return next;
+    });
     setCreating(false);
     setSelected(recipe);
   };

@@ -29,8 +29,8 @@ const AuthenticatedApp = () => (
           <TooltipProvider>
             <BrowserRouter>
               <ScrollToTop />
-              <div className="flex flex-col h-dvh overflow-hidden">
-                <main id="main-scroll" className="flex-1 overflow-y-auto overscroll-contain">
+              <div className="flex flex-col h-dvh">
+                <main id="main-scroll" className="flex-1 min-h-0 overflow-y-auto overscroll-contain">
                   <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/planner" element={<MealPlanner />} />
