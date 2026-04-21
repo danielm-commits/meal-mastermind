@@ -32,7 +32,7 @@ const RecipeCard = ({
         ))}
       </div>
     </div>
-    <div className="relative flex items-center gap-1 shrink-0">
+    <div className="relative flex items-center gap-1 shrink-0 z-10">
       <button onClick={onToggleFav} className="w-8 h-8 rounded-full flex items-center justify-center transition-colors">
         <Heart className={`w-4 h-4 ${isFav ? 'fill-primary text-primary' : 'text-muted-foreground'}`} strokeWidth={1.5} />
       </button>

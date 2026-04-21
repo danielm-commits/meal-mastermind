@@ -100,6 +100,16 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
   }
+
+  /* Prevent iOS Safari zoom on input focus — must be >= 16px */
+  input, textarea, select {
+    font-size: 16px;
+  }
+
+  /* Remove 300ms tap delay on all interactive elements */
+  button, a, [role="button"] {
+    touch-action: manipulation;
+  }
 }
 
 @layer utilities {
