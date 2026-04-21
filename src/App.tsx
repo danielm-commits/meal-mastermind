@@ -50,11 +50,8 @@ const AuthenticatedApp = () => (
   </ProfileProvider>
 );
 
-// Gate: shows auth screen or the full app
-const AppGate = () => {
-  const { isAuthenticated } = useAuth();
-  return isAuthenticated ? <AuthenticatedApp /> : <AuthScreen onAuth={() => {}} />;
-};
+// Auth disabled — always render the app directly
+const AppGate = () => <AuthenticatedApp />;
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
